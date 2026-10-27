@@ -37,6 +37,8 @@ cd ORB_SLAM3
 sed -i 's/++11/++17/g' CMakeLists.txt
 # Limit parallel jobs so the Pi doesn't run out of RAM
 sed -i "s/make -j[0-9]*/make -j$JOBS/g" build.sh
+# C++17 forbids ++ on a bool (LoopClosing.cc: mnFullBAIdx++)
+sed -i 's/bool mnFullBAIdx;/int mnFullBAIdx;/' include/LoopClosing.h
 
 echo "=== 4/4  Build ORB-SLAM3 (the long part) ==="
 chmod +x build.sh
