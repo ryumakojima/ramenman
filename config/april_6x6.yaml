@@ -2,5 +2,5 @@
 target_type: 'aprilgrid'
 tagCols: 6
 tagRows: 6
-tagSize: 0.088      # side length of ONE black tag, in metres (measure with a ruler)
-tagSpacing: 0.3     # gap between tags divided by tagSize (0.3 for the official Kalibr PDF)
+tagSize: 0.025      # side length of ONE black tag, in metres (measure with a ruler)
+tagSpacing: 0.3333333333     # gap between tags divided by tagSize (0.3 for the official Kalibr PDF)
