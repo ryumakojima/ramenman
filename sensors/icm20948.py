@@ -50,7 +50,7 @@ class ICM20948:
                 f"No I2C device answering at 0x{address:02X} on bus {bus} ({e}). "
                 "The IMU is not wired to the Pi, or it's at another address. "
                 "Run `sudo i2cdetect -y 1`: if you see 69 use --imu-addr 0x69; "
-                "if the grid is empty, check SDA->pin 3, SCL->pin 5, 3.3V->pin 1, GND->pin 6. "
+                "if the grid is empty, check SDA->pin 3, SCL->pin 5, and that both camera ribbons are plugged in (they power the IMU). "
                 "To test cameras only meanwhile: python3 test_sensors.py --no-imu"
             ) from None
         if who != WHO_AM_I_VALUE:

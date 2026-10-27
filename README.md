@@ -112,14 +112,16 @@ cd ~/ramenman && git pull
 
 ### Wiring
 
-**IMU → Pi 5 (I2C)**
+**IMU → Pi 5 (I2C)**: Waveshare IMX219-83 board, header pins `SDA / SCL / INT / FSYNC`
 
-| IMU | Pi 5 header pin |
+| Board pin | Pi 5 header pin |
 |---|---|
-| 3.3V / VCC | Pin 1 (3.3V) |
-| GND | Pin 6 (GND) |
 | SDA | Pin 3 (GPIO2) |
 | SCL | Pin 5 (GPIO3) |
+| INT | not connected |
+| FSYNC | not connected |
+
+The board has no VCC/GND header pins. The IMU gets power and ground through the camera ribbon cables, so **both ribbons must be plugged in** for the IMU to work.
 
 **Flight controller telemetry port → Pi 5 (UART)** — only needed from step 8
 
@@ -500,7 +502,7 @@ Commands go to the FC as velocity setpoints in **GUIDED** mode (ArduPilot) or **
 | Problem | Fix |
 |---|---|
 | `Need 2 cameras, found 0/1` | Check ribbon cables (22-pin end in the Pi, blue side orientation), then the `dtoverlay` lines in [§5](#5-raspberry-pi-setup). Run `rpicam-hello --list-cameras`. |
-| `ICM-20948 not found` | Run `i2cdetect -y 1`. If you see `69`, use `--imu-addr 0x69`. If nothing shows, check wiring and that I2C is enabled. |
+| `ICM-20948 not found` / `Errno 121` | Run `sudo i2cdetect -y 1`. If you see `69`, use `--imu-addr 0x69`. If the grid is empty: check SDA→pin 3 and SCL→pin 5 (count from pin 1, the square pad), reseat both ribbon cables (they power the IMU), and try `sudo i2cdetect -y -r 1`. |
 | `No module named picamera2` | Install it with `sudo apt install python3-picamera2`, and make sure the venv was created with `--system-site-packages`. |
 | `No module named smbus2` | Activate the venv, then `pip install -r requirements.txt`. |
 | Window doesn't open over SSH | Use `--headless`, or connect with VNC. |
