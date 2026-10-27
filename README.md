@@ -140,7 +140,7 @@ Never commit large recordings (`.bag`, `.db3`, image folders). `.gitignore` alre
 
 ## 5. Raspberry Pi setup
 
-These instructions assume **Raspberry Pi OS Bookworm (64-bit)**. Check which OS you have with:
+These instructions are for **Raspberry Pi OS (64-bit)**. Our Pi runs **Raspberry Pi OS Trixie (Debian 13, aarch64)**; Bookworm (Debian 12) works the same. Check which OS you have with:
 ```bash
 cat /etc/os-release
 ```
