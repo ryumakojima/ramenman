@@ -11,6 +11,34 @@ Software for our autonomous drone. It runs on a **Raspberry Pi 5** with the **Le
 
 ---
 
+## 🚀 Quick start (Raspberry Pi)
+
+Open this page in the Pi's browser. Click the **copy button** on the top-right of each box, then paste it into the Pi's terminal with `Ctrl+Shift+V`.
+
+**1. Download the code and set everything up** (takes a few minutes):
+```bash
+cd ~ && git clone https://github.com/ryumakojima/ramenman.git && cd ramenman && bash setup.sh
+```
+At the end, it prints the OS, the cameras it found, and the I2C devices. Screenshot that and send it to the team.
+
+**2. Reboot** (only needed the first time):
+```bash
+sudo reboot
+```
+
+**3. Test the cameras and IMU:**
+```bash
+cd ~/ramenman && source .venv/bin/activate && python3 test_sensors.py
+```
+Press `q` to quit. The pass criteria are in [Step 1](#6-step-1--sensor-bring-up).
+
+**Get the latest code later:**
+```bash
+cd ~/ramenman && git pull
+```
+
+---
+
 ## Contents
 
 1. [Concepts in plain words](#1-concepts-in-plain-words)
