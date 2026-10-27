@@ -9,7 +9,7 @@ sudo raspi-config nonint do_i2c 0
 
 echo "=== 2/4  Installing system packages ==="
 sudo apt update
-sudo apt install -y python3-picamera2 python3-opencv python3-numpy python3-venv i2c-tools git
+sudo apt install -y python3-picamera2 python3-opencv python3-numpy python3-yaml python3-matplotlib python3-venv i2c-tools git
 
 echo "=== 3/4  Creating Python environment ==="
 if [ ! -d .venv ]; then
