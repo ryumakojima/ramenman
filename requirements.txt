@@ -1,0 +1,2 @@
+# picamera2, opencv and numpy come from apt (see README)
+smbus2>=0.4
