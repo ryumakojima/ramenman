@@ -42,8 +42,17 @@ class ICM20948:
         self.addr = address
         self._bank = None
 
-        self._select_bank(0)
-        who = self.bus.read_byte_data(self.addr, WHO_AM_I)
+        try:
+            self._select_bank(0)
+            who = self.bus.read_byte_data(self.addr, WHO_AM_I)
+        except OSError as e:
+            raise RuntimeError(
+                f"No I2C device answering at 0x{address:02X} on bus {bus} ({e}). "
+                "The IMU is not wired to the Pi, or it's at another address. "
+                "Run `sudo i2cdetect -y 1`: if you see 69 use --imu-addr 0x69; "
+                "if the grid is empty, check SDA->pin 3, SCL->pin 5, 3.3V->pin 1, GND->pin 6. "
+                "To test cameras only meanwhile: python3 test_sensors.py --no-imu"
+            ) from None
         if who != WHO_AM_I_VALUE:
             raise RuntimeError(
                 f"ICM-20948 not found at 0x{address:02X} (WHO_AM_I=0x{who:02X}, expected 0xEA). "
