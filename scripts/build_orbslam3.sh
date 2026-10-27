@@ -39,6 +39,8 @@ sed -i 's/++11/++17/g' CMakeLists.txt
 sed -i "s/make -j[0-9]*/make -j$JOBS/g" build.sh
 # C++17 forbids ++ on a bool (LoopClosing.cc: mnFullBAIdx++)
 sed -i 's/bool mnFullBAIdx;/int mnFullBAIdx;/' include/LoopClosing.h
+# Sophus' own tests fail under new GCC with -Werror (harmless warnings); don't treat them as errors
+sed -i 's/ -Werror//' Thirdparty/Sophus/CMakeLists.txt
 
 echo "=== 4/4  Build ORB-SLAM3 (the long part) ==="
 chmod +x build.sh
